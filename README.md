@@ -19,5 +19,5 @@ Si no quedo claro al inicio, lo desarrollaremos como un videojuego, y tomara en 
 - 🌱 Entretener a los jugadores momentaneamente, trayendo nostalgia con una jugabilidad intuitiva
 
 ## 📋 Alcance Preliminar  
-Describe hasta dónde llegará el proyecto en esta primera versión.   
+Toca ver con el grupo xd   
 
