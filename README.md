@@ -1,4 +1,4 @@
-# Proyecto-final---Jardin-Meca-zen
+# Proyecto-final--Jardin-Meca-Zen
 ## 👥 Aqui estaran los integrantes de un juego sencillo pero funcional :
 
 ##### -*Manuel Federico Castro Suárez*
@@ -12,14 +12,18 @@ Este proyecto tendrá como foco principal una idea de un videojuego muy conocido
   <img src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/910ef7ee-7fcd-4f55-9b6c-f2056fdda32c/dggelts-cddcc3f9-ca0d-4ef5-9c26-feffa101e690.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzkxMGVmN2VlLTdmY2QtNGY1NS05YjZjLWYyMDU2ZmRkYTMyY1wvZGdnZWx0cy1jZGRjYzNmOS1jYTBkLTRlZjUtOWMyNi1mZWZmYTEwMWU2OTAucG5nIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.mYwsYl0_f66TMJ7jIcQxcyyQzSVtMXHnscldHHXQbTM" alt="xd" width="600px">
 </div>
 
-![Diagrama_de_flujo](https://github.com/Programacion-UNAL202024-2/Proyecto-final---Jardin-Meca-zen/tree/main)
-
-## 🪴 Objetivos  
+## ⭐ Objetivos  
 Si no quedo claro al inicio, lo desarrollaremos como un videojuego, y tomara en cuenta los siguientes objetivos:
+- 🌱 Crear en el jugador habilidades como la responsabilidad y el cuidado por la naturaleza.
 - 🌱 Revivir una mecanica de un videojuego muy mencionado, el cual es Plantas vs Zombies.
-- 🌱 Dar una nueva jugabilidad de una idea ya existente  
-- 🌱 Entretener a los jugadores momentaneamente, trayendo nostalgia con una jugabilidad intuitiva
+- 🌱 Dar una nueva jugabilidad de una idea ya existente.
+- 🌱 Entretener a los jugadores momentaneamente, trayendo nostalgia con una jugabilidad intuitiva.
 
 ## 📋 Alcance Preliminar  
-Toca ver con el grupo xd   
+Toca ver con el grupo xd  
+
+## 🌷 Diagrama de Flujo
+<div align="center">
+  <img src="https://github.com/Programacion-UNAL202024-2/Proyecto-final---Jardin-Meca-zen/blob/main/_Diagrama%20de%20flujo%20(1).png" alt="xd" width="900px">
+</div>
 
