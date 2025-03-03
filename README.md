@@ -9,9 +9,8 @@
 ## 📝 Resumen del Juego
 En **TamagotchiZen**, tu misión es mantener viva y saludable a una planta que evoluciona por etapas (semilla 🌰, brote 🌿, planta adulta 🌳). Deberás:
 - **Regar** y **abonar** la planta.
-- **Reaccionar a eventos climáticos aleatorios** (sol intenso ☀️, lluvia 🌧️, plagas 🐛).
+- **Reaccionar a eventos climáticos aleatorios** (sol intenso ☀️ y lluvia 🌧️).
 - **Evitar que muera** por falta de recursos o salud.
-- **Guardar tu progreso** para continuar más tarde.
 
 ## 🎯 Objetivo
 Llevar a tu planta a su etapa adulta superando los desafíos del clima y la gestión de recursos. ¡Cuanto más avances, más difícil será!
@@ -21,7 +20,6 @@ Llevar a tu planta a su etapa adulta superando los desafíos del clima y la gest
 - **Eventos climáticos aleatorios** que afectan el progreso.
 - **Música de fondo relajante** y efectos de sonido.
 - **Menú principal** con opciones de nueva partida y carga de progreso.
-- **Guardado automático** en archivo JSON.
 
 ## ⚙️ Lenguaje y Bibliotecas usadas
 - **Python**
