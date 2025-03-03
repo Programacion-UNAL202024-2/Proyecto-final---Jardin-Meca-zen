@@ -25,8 +25,8 @@ Llevar a tu planta a su etapa adulta superando los desafíos del clima y la gest
 - **Python**
 - **Pygame**
 
-## 🌷 Diagrama de Flujo
+## 🌷 Capturas
 <div align="center">
-  <img src="https://github.com/Programacion-UNAL202024-2/Proyecto-final---Jardin-Meca-zen/blob/main/_Diagrama%20de%20flujo%20(1).png" alt="xd" width="900px">
+  <img src="https://github.com/Programacion-UNAL202024-2/Proyecto-final--TamagotchiZen/blob/main/captura_juego.png" alt="xd" width="800px">
 </div>
 
