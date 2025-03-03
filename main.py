@@ -15,7 +15,7 @@ plantita_imagen = pygame.image.load("plantita.png")
 plantita_imagen = pygame.transform.scale(plantita_imagen, (70, 100))
 
 plantita_fase1 = pygame.image.load("plantita_fase1.png")
-plantita_fase1 = pygame.transform.scale(plantita_fase1, (80, 90))
+plantita_fase1 = pygame.transform.scale(plantita_fase1, (100, 120))
 
 plantita_fase2 = pygame.image.load("plantita_fase2.png")
 plantita_fase2 = pygame.transform.scale(plantita_fase2, (100, 120))
@@ -29,7 +29,7 @@ regadera_imagen = pygame.transform.scale(regadera_imagen, (50, 50))
 abono_imagen = pygame.image.load("abono_cursor.png")
 abono_imagen = pygame.transform.scale(abono_imagen, (50, 50))
 
-# Imágenes para eventos especiales (comenta estas líneas si no tienes estas imágenes)
+# Imágenes para eventos especiales
 try:
     desierto_imagen = pygame.image.load("desierto.jpg")
     desierto_imagen = pygame.transform.scale(desierto_imagen, (600, 400))
@@ -82,7 +82,7 @@ duracion_aviso = 3  # Duración del aviso en segundos
 # Botones
 boton_agua_rect = pygame.Rect(50, 300, 50, 50)
 boton_abono_rect = pygame.Rect(500, 300, 50, 50)
-boton_play_rect = pygame.Rect(250, 200, 100, 50)
+boton_play_rect = pygame.Rect(250, 270, 100, 50)
 
 # Área de la plantita para detectar colisiones
 plantita_rect = pygame.Rect(250, 150, 100, 150)
@@ -393,7 +393,7 @@ def mostrar_pantalla_inicio():
     
     pygame.draw.rect(pantalla, VERDE, boton_play_rect)
     texto_play = fuente.render("Jugar", True, NEGRO)
-    pantalla.blit(texto_play, (270, 210))
+    pantalla.blit(texto_play, (270, 280))
 
 # Pantalla de "Ganaste"
 def mostrar_pantalla_ganar():
@@ -433,7 +433,7 @@ def dibujar_barras_estado():
     
     # Nivel de dificultad y fase
     texto_nivel = fuente_pequena.render(f"Nivel: {nivel_dificultad}", True, NEGRO)
-    pantalla.blit(texto_nivel, (20, 20))
+    pantalla.blit(texto_nivel, (20, 10))
     
     texto_fase = fuente_pequena.render(f"Fase: {plantita['fase']}/3", True, NEGRO)
     pantalla.blit(texto_fase, (20, 80))
