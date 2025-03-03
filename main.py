@@ -10,6 +10,10 @@ ANCHO, ALTO = 600, 400
 pantalla = pygame.display.set_mode((ANCHO, ALTO))
 pygame.display.set_caption("Grow Zen")
 
+# Cargar música de fondo
+pygame.mixer.music.load("musica_fondo.mp3")  # Asegúrate de tener un archivo llamado "musica_fondo.mp3"
+pygame.mixer.music.play(-1)  # Reproducir en bucle
+
 # Cargar imágenes
 plantita_imagen = pygame.image.load("plantita.png")
 plantita_imagen = pygame.transform.scale(plantita_imagen, (70, 100))
@@ -71,7 +75,7 @@ eventos = ["desierto", "lluvioso", "tormenta", None]  # Añadido nuevo evento "t
 
 # Requisitos para crecer (aumentados para hacer el juego más largo)
 requisitos_fase1 = {"agua": 8, "abono": 8}
-requisitos_fase2 = {"agua": 12, "abono": 12}
+requisitos_fase2 = {"agua": 10, "abono": 10}
 requisitos_fase3 = {"agua": 16, "abono": 16}
 
 # Avisos
@@ -82,7 +86,7 @@ duracion_aviso = 3  # Duración del aviso en segundos
 # Botones
 boton_agua_rect = pygame.Rect(50, 300, 50, 50)
 boton_abono_rect = pygame.Rect(500, 300, 50, 50)
-boton_play_rect = pygame.Rect(250, 270, 100, 50)
+boton_play_rect = pygame.Rect(230, 270, 150, 50)
 
 # Área de la plantita para detectar colisiones
 plantita_rect = pygame.Rect(250, 150, 100, 150)
@@ -368,7 +372,7 @@ def mostrar_pantalla_perdido():
     
     pygame.draw.rect(pantalla, BLANCO, boton_play_rect)
     texto_play = fuente.render("Reintentar", True, NEGRO)
-    pantalla.blit(texto_play, (260, 210))
+    pantalla.blit(texto_play, (250, 280))
 
 # Pantalla de "Inicio"
 def mostrar_pantalla_inicio():
@@ -563,7 +567,7 @@ while ejecutando:
                 
                 # Añadir texto de instrucción
                 texto_instruccion = fuente_pequena.render("Arrastra hacia la planta", True, NEGRO)
-                pantalla.blit(texto_instruccion, (ANCHO//2 - texto_instruccion.get_width()//2, 350))
+                pantalla.blit(texto_instruccion, (ANCHO//2 - texto_instruccion.get_width()//2, 330))
             
             # Dibujar objeto arrastrado (por encima de todo)
             dibujar_arrastre()
