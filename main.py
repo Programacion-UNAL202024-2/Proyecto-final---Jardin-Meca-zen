@@ -157,7 +157,7 @@ def aplicar_evento_efectos():
     tiempo_actual = time.time()
     
     # Factor de dificultad aumenta con la fase
-    factor_dificultad = nivel_dificultad * (1 + plantita["fase"] * 0.3)
+    factor_dificultad = nivel_dificultad * (0.5 + plantita["fase"] * 0.3)
     
     # Efectos de desierto: disminuye el agua más rápido
     if evento_actual == "desierto":
@@ -171,7 +171,7 @@ def aplicar_evento_efectos():
     # Efectos de lluvia: aumenta el agua pero disminuye el abono
     elif evento_actual == "lluvioso":
         if tiempo_actual - tiempo_ultimo_decremento > 2 / factor_dificultad:
-            plantita["agua"] = min(10, plantita["agua"] + 0.5)
+            plantita["agua"] = min(10, plantita["agua"] + 0.7)
             plantita["abono"] = max(0, plantita["abono"] - 0.5)
             if plantita["abono"] <= 2:
                 aviso = "¡Necesitas abono urgente!"
@@ -181,8 +181,8 @@ def aplicar_evento_efectos():
     # Efectos de tormenta: disminuye tanto agua como abono (evento más severo)
     elif evento_actual == "tormenta":
         if tiempo_actual - tiempo_ultimo_decremento > 1.2 / factor_dificultad:
-            plantita["agua"] = max(0, plantita["agua"] - 0.7)
-            plantita["abono"] = max(0, plantita["abono"] - 0.7)
+            plantita["agua"] = max(0, plantita["agua"] - 0.07)
+            plantita["abono"] = max(0, plantita["abono"] - 0.2)
             if plantita["agua"] <= 2 or plantita["abono"] <= 2:
                 aviso = "¡La tormenta está dañando tu planta!"
                 tiempo_aviso = tiempo_actual
