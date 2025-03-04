@@ -8,10 +8,10 @@ pygame.init()
 # Configuración de la pantalla
 ANCHO, ALTO = 600, 400
 pantalla = pygame.display.set_mode((ANCHO, ALTO))
-pygame.display.set_caption("Grow Zen")
+pygame.display.set_caption("Tamagotchi_Zen")
 
 # Cargar música de fondo
-pygame.mixer.music.load("musica_fondo.mp3")  # Asegúrate de tener un archivo llamado "musica_fondo.mp3"
+pygame.mixer.music.load("musica_fondo.mp3")
 pygame.mixer.music.play(-1)  # Reproducir en bucle
 
 # Cargar imágenes
@@ -65,8 +65,8 @@ fuente_pequena = pygame.font.Font(None, 24)
 
 # Estados del juego
 plantita = {"fase": 0, "agua": 5, "abono": 5, "viva": True}
-tiempo_restante = 120  # Tiempo inicial más largo
-tiempo_total = 120
+tiempo_restante = 80  # Tiempo inicial más largo
+tiempo_total = 80
 
 # Eventos
 evento_actual = None
@@ -114,7 +114,7 @@ def reiniciar_juego():
     global tiempo_ultimo_evento, tiempo_ultimo_decremento, tiempo_ultimo_aumento_dificultad
     
     plantita = {"fase": 0, "agua": 5, "abono": 5, "viva": True}
-    tiempo_restante = 120
+    tiempo_restante = 80
     evento_actual = None
     nivel_dificultad = 1
     
@@ -171,7 +171,7 @@ def aplicar_evento_efectos():
     # Efectos de lluvia: aumenta el agua pero disminuye el abono
     elif evento_actual == "lluvioso":
         if tiempo_actual - tiempo_ultimo_decremento > 2 / factor_dificultad:
-            plantita["agua"] = min(10, plantita["agua"] + 0.7)
+            plantita["agua"] = min(20, plantita["agua"] + 0.7)
             plantita["abono"] = max(0, plantita["abono"] - 0.5)
             if plantita["abono"] <= 2:
                 aviso = "¡Necesitas abono urgente!"
@@ -271,15 +271,15 @@ def finalizar_arrastre(pos):
     if arrastrando:
         # Verificar si se suelta encima de la plantita
         if plantita_rect.collidepoint(pos):
-            if objeto_arrastrado == "agua" and plantita["agua"] < 10:
+            if objeto_arrastrado == "agua" and plantita["agua"] < 20:
                 # La efectividad disminuye con la fase
                 aumento = 1.0 / (1 + plantita["fase"] * 0.25)
-                plantita["agua"] = min(10, plantita["agua"] + aumento)
+                plantita["agua"] = min(20, plantita["agua"] + aumento)
                 # Efecto de sonido o visual aquí (futuro)
-            elif objeto_arrastrado == "abono" and plantita["abono"] < 10:
+            elif objeto_arrastrado == "abono" and plantita["abono"] < 20:
                 # La efectividad disminuye con la fase
                 aumento = 1.0 / (1 + plantita["fase"] * 0.25)
-                plantita["abono"] = min(10, plantita["abono"] + aumento)
+                plantita["abono"] = min(20, plantita["abono"] + aumento)
                 # Efecto de sonido o visual aquí (futuro)
         
         # Restaurar el cursor
@@ -377,7 +377,7 @@ def mostrar_pantalla_perdido():
 # Pantalla de "Inicio"
 def mostrar_pantalla_inicio():
     pantalla.fill(GRIS)
-    texto_titulo = fuente.render("Grow Zen - Cuida tu plantita", True, NEGRO)
+    texto_titulo = fuente.render("Tamagotchi - Cuida tu plantita", True, NEGRO)
     pantalla.blit(texto_titulo, (120, 100))
     
     # Instrucciones
@@ -403,7 +403,7 @@ def mostrar_pantalla_inicio():
 def mostrar_pantalla_ganar():
     pantalla.fill(VERDE_OSCURO)
     texto = fuente.render("¡Felicidades! Has cultivado la planta perfecta.", True, BLANCO)
-    pantalla.blit(texto, (50, 120))
+    pantalla.blit(texto, (30, 120))
     
     texto_tiempo = fuente_pequena.render(f"Tiempo restante: {int(tiempo_restante)} segundos", True, BLANCO)
     pantalla.blit(texto_tiempo, (200, 170))
@@ -413,20 +413,20 @@ def mostrar_pantalla_ganar():
     
     pygame.draw.rect(pantalla, BLANCO, boton_play_rect)
     texto_play = fuente.render("Reiniciar", True, NEGRO)
-    pantalla.blit(texto_play, (260, 210))
+    pantalla.blit(texto_play, (250, 280))
 
 # Función para dibujar barras de estado
 def dibujar_barras_estado():
     # Barra de agua
     pygame.draw.rect(pantalla, NEGRO, (50, 50, 120, 20), 1)
-    pygame.draw.rect(pantalla, AZUL, (51, 51, max(0, int(118 * plantita["agua"] / 10)), 18))
-    texto_agua = fuente_pequena.render(f"Agua: {plantita['agua']:.1f}/10", True, NEGRO)
+    pygame.draw.rect(pantalla, AZUL, (51, 51, max(0, int(118 * plantita["agua"] / 20)), 18))
+    texto_agua = fuente_pequena.render(f"Agua: {plantita['agua']:.1f}/20", True, NEGRO)
     pantalla.blit(texto_agua, (65, 30))
     
     # Barra de abono
     pygame.draw.rect(pantalla, NEGRO, (430, 50, 120, 20), 1)
-    pygame.draw.rect(pantalla, VERDE, (431, 51, max(0, int(118 * plantita["abono"] / 10)), 18))
-    texto_abono = fuente_pequena.render(f"Abono: {plantita['abono']:.1f}/10", True, NEGRO)
+    pygame.draw.rect(pantalla, VERDE, (431, 51, max(0, int(118 * plantita["abono"] / 20)), 18))
+    texto_abono = fuente_pequena.render(f"Abono: {plantita['abono']:.1f}/20", True, NEGRO)
     pantalla.blit(texto_abono, (445, 30))
     
     # Barra de tiempo
@@ -520,7 +520,7 @@ while ejecutando:
         # Actualizar tiempo
         tiempo_actual = time.time()
         if tiempo_inicio_juego > 0:
-            tiempo_restante = max(0, 120 - (tiempo_actual - tiempo_inicio_juego))
+            tiempo_restante = max(0, 80 - (tiempo_actual - tiempo_inicio_juego))
         
         if plantita["viva"] and tiempo_restante > 0:
             # Fondo base
@@ -578,7 +578,7 @@ while ejecutando:
         elif not plantita["viva"]:
             pantalla_actual = "perdido"
         elif tiempo_restante <= 0:
-            pantalla_actual = "perdido"
+            pantalla_actual = "ganar"
             
     elif pantalla_actual == "perdido":
         mostrar_pantalla_perdido()
