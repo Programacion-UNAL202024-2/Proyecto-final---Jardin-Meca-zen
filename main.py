@@ -16,30 +16,33 @@ pygame.mixer.music.play(-1)  # Reproducir en bucle
 
 # Cargar imágenes
 plantita_imagen = pygame.image.load("plantita.png")
-plantita_imagen = pygame.transform.scale(plantita_imagen, (70, 100))
+plantita_imagen = pygame.transform.scale(plantita_imagen, (100, 100))
 
 plantita_fase1 = pygame.image.load("plantita_fase1.png")
-plantita_fase1 = pygame.transform.scale(plantita_fase1, (100, 120))
+plantita_fase1 = pygame.transform.scale(plantita_fase1, (90, 90))
 
 plantita_fase2 = pygame.image.load("plantita_fase2.png")
-plantita_fase2 = pygame.transform.scale(plantita_fase2, (100, 120))
+plantita_fase2 = pygame.transform.scale(plantita_fase2, (78, 135))
 
 plantita_fase3 = pygame.image.load("plantita_fase3.png")  
-plantita_fase3 = pygame.transform.scale(plantita_fase3, (120, 140))  # Pero un poco más grande
+plantita_fase3 = pygame.transform.scale(plantita_fase3, (80, 130))
 
 regadera_imagen = pygame.image.load("agua_cursor.png")
-regadera_imagen = pygame.transform.scale(regadera_imagen, (50, 50))
+regadera_imagen = pygame.transform.scale(regadera_imagen, (60, 60))
 
 abono_imagen = pygame.image.load("abono_cursor.png")
-abono_imagen = pygame.transform.scale(abono_imagen, (50, 50))
+abono_imagen = pygame.transform.scale(abono_imagen, (60, 60))
 
 # Imágenes para eventos especiales
 try:
     desierto_imagen = pygame.image.load("desierto.jpg")
     desierto_imagen = pygame.transform.scale(desierto_imagen, (600, 400))
 
-    lluvia_imagen = pygame.image.load("lluvia.jpeg")
+    lluvia_imagen = pygame.image.load("lluvia.jpg")
     lluvia_imagen = pygame.transform.scale(lluvia_imagen, (600, 400))
+
+    tormenta_imagen = pygame.image.load("tormenta.jpg")
+    tormenta_imagen = pygame.transform.scale(tormenta_imagen, (600, 400))
 except pygame.error:
     # Si no se encuentran las imágenes, crear superficies de colores
     desierto_imagen = pygame.Surface((600, 400))
@@ -47,6 +50,9 @@ except pygame.error:
     
     lluvia_imagen = pygame.Surface((600, 400))
     lluvia_imagen.fill((176, 196, 222))  # Color azul claro
+
+    tormenta_imagen = pygame.Surface((600, 400))
+    tormenta_imagen.fill((176, 196, 222)) # Color azul claro
 
 # Colores
 BLANCO = (255, 255, 255)
@@ -71,7 +77,7 @@ tiempo_total = 80
 # Eventos
 evento_actual = None
 tiempo_inicio_evento = 0
-eventos = ["desierto", "lluvioso", "tormenta", None]  # Añadido nuevo evento "tormenta"
+eventos = ["desierto", "lluvioso", "tormenta", None]
 
 # Requisitos para crecer (aumentados para hacer el juego más largo)
 requisitos_fase1 = {"agua": 8, "abono": 8}
@@ -84,12 +90,12 @@ tiempo_aviso = 0
 duracion_aviso = 3  # Duración del aviso en segundos
 
 # Botones
-boton_agua_rect = pygame.Rect(50, 300, 50, 50)
-boton_abono_rect = pygame.Rect(500, 300, 50, 50)
+boton_agua_rect = pygame.Rect(50, 270, 60, 60)
+boton_abono_rect = pygame.Rect(500, 270, 60, 60)
 boton_play_rect = pygame.Rect(230, 270, 150, 50)
 
 # Área de la plantita para detectar colisiones
-plantita_rect = pygame.Rect(250, 150, 100, 150)
+plantita_rect = pygame.Rect(250, 150, 150, 150)
 
 # Nivel de dificultad base (aumentará con cada fase)
 nivel_dificultad = 1
@@ -134,7 +140,7 @@ def generar_evento():
         # Mayor probabilidad de evento con nivel de dificultad más alto
         probabilidad = 0.2 * nivel_dificultad
         if random.random() < probabilidad:
-            # Más eventos severos en fases avanzadas
+            # Más eventos dificiles en fases avanzadas
             if plantita["fase"] < 2:
                 eventos_posibles = ["desierto", "lluvioso"]
             else:
@@ -178,7 +184,7 @@ def aplicar_evento_efectos():
                 tiempo_aviso = tiempo_actual
             tiempo_ultimo_decremento = tiempo_actual
             
-    # Efectos de tormenta: disminuye tanto agua como abono (evento más severo)
+    # Efectos de tormenta: disminuye tanto agua como abono (evento más dificil)
     elif evento_actual == "tormenta":
         if tiempo_actual - tiempo_ultimo_decremento > 1.2 / factor_dificultad:
             plantita["agua"] = max(0, plantita["agua"] - 0.07)
@@ -235,17 +241,17 @@ def dibujar_plantita():
     
     # Actualizar el área de colisión según la fase
     if plantita["fase"] == 0:
-        pantalla.blit(plantita_imagen, (265, 200))
+        pantalla.blit(plantita_imagen, (245, 200))
         plantita_rect = pygame.Rect(265, 200, 70, 100)
     elif plantita["fase"] == 1:
-        pantalla.blit(plantita_fase1, (260, 180))
-        plantita_rect = pygame.Rect(260, 180, 80, 90)
+        pantalla.blit(plantita_fase1, (245, 200))
+        plantita_rect = pygame.Rect(265, 200, 70, 100)
     elif plantita["fase"] == 2:
-        pantalla.blit(plantita_fase2, (250, 150))
-        plantita_rect = pygame.Rect(250, 150, 100, 120)
+        pantalla.blit(plantita_fase2, (260, 180))
+        plantita_rect = pygame.Rect(265, 200, 100, 120)
     elif plantita["fase"] == 3:
-        pantalla.blit(plantita_fase3, (240, 130))
-        plantita_rect = pygame.Rect(240, 130, 120, 140)
+        pantalla.blit(plantita_fase3, (260, 180))
+        plantita_rect = pygame.Rect(265, 200, 100, 120)
 
 # Función para iniciar arrastre
 def iniciar_arrastre(pos):
