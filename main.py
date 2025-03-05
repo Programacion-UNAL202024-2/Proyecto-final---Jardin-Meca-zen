@@ -24,7 +24,7 @@ plantita_fase1 = pygame.transform.scale(plantita_fase1, (100, 120))
 plantita_fase2 = pygame.image.load("plantita_fase2.png")
 plantita_fase2 = pygame.transform.scale(plantita_fase2, (100, 120))
 
-plantita_fase3 = pygame.image.load("plantita_fase2.png")  # Usamos la misma imagen para fase3
+plantita_fase3 = pygame.image.load("plantita_fase3.png")  
 plantita_fase3 = pygame.transform.scale(plantita_fase3, (120, 140))  # Pero un poco más grande
 
 regadera_imagen = pygame.image.load("agua_cursor.png")
