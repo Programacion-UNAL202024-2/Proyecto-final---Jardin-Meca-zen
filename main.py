@@ -11,44 +11,44 @@ pantalla = pygame.display.set_mode((ANCHO, ALTO))
 pygame.display.set_caption("Tamagotchi_Zen")
 
 # Cargar música de fondo
-pygame.mixer.music.load("musica_fondo.mp3")
+pygame.mixer.music.load("assets/musica_fondo.mp3")
 pygame.mixer.music.play(-1)  # Reproducir en bucle
 
 # Cargar efectos de sonido
-sonido_agua = pygame.mixer.Sound("agua.mp3")
-sonido_abono = pygame.mixer.Sound("abono.mp3")
+sonido_agua = pygame.mixer.Sound("assets/agua.mp3")
+sonido_abono = pygame.mixer.Sound("assets/abono.mp3")
 
 # Cargar imágenes (alto, ancho)
-plantita_imagen = pygame.image.load("plantita.png")
+plantita_imagen = pygame.image.load("assets/plantita.png")
 plantita_imagen = pygame.transform.scale(plantita_imagen, (100, 100))
 
-plantita_fase1 = pygame.image.load("plantita_fase1.png")
+plantita_fase1 = pygame.image.load("assets/plantita_fase1.png")
 plantita_fase1 = pygame.transform.scale(plantita_fase1, (90, 90))
 
-plantita_fase2 = pygame.image.load("plantita_fase2.png")
+plantita_fase2 = pygame.image.load("assets/plantita_fase2.png")
 plantita_fase2 = pygame.transform.scale(plantita_fase2, (78, 135))
 
-plantita_fase3 = pygame.image.load("plantita_fase3.png")  
+plantita_fase3 = pygame.image.load("assets/plantita_fase3.png")  
 plantita_fase3 = pygame.transform.scale(plantita_fase3, (80, 130))
 
-regadera_imagen = pygame.image.load("agua_cursor.png")
+regadera_imagen = pygame.image.load("assets/agua_cursor.png")
 regadera_imagen = pygame.transform.scale(regadera_imagen, (60, 60))
 
-abono_imagen = pygame.image.load("abono_cursor.png")
+abono_imagen = pygame.image.load("assets/abono_cursor.png")
 abono_imagen = pygame.transform.scale(abono_imagen, (60, 60))
 
-fondo_juego = pygame.image.load("fondo_juego.jpg")
-fondo_juego = pygame.transform.scale(fondo_juego, (600, 400))
+fondo_principal = pygame.image.load("assets/fondo_principal.jpg")
+fondo_principal = pygame.transform.scale(fondo_principal, (600, 400))
 
 # Imágenes para eventos especiales
 try:
-    desierto_imagen = pygame.image.load("desierto.jpg")
+    desierto_imagen = pygame.image.load("assets/desierto.jpg")
     desierto_imagen = pygame.transform.scale(desierto_imagen, (600, 400))
 
-    lluvia_imagen = pygame.image.load("lluvia.jpg")
+    lluvia_imagen = pygame.image.load("assets/lluvia.jpg")
     lluvia_imagen = pygame.transform.scale(lluvia_imagen, (600, 400))
 
-    tormenta_imagen = pygame.image.load("tormenta.jpg")
+    tormenta_imagen = pygame.image.load("assets/tormenta.jpg")
     tormenta_imagen = pygame.transform.scale(tormenta_imagen, (600, 400))
 except pygame.error:
     # Si no se encuentran las imágenes, crear superficies de colores
