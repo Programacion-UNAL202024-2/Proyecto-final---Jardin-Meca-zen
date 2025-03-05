@@ -1,6 +1,7 @@
 import pygame
 import random
 import time
+import os
 
 # Inicializar Pygame
 pygame.init()
@@ -13,6 +14,9 @@ pygame.display.set_caption("Tamagotchi_Zen")
 # Cargar música de fondo
 pygame.mixer.music.load("musica_fondo.mp3")
 pygame.mixer.music.play(-1)  # Reproducir en bucle
+
+sonido_agua = pygame.mixer.Sound("agua.mp3")
+sonido_abono = pygame.mixer.Sound("abono.mp3")
 
 # Cargar imágenes
 plantita_imagen = pygame.image.load("plantita.png")
@@ -32,6 +36,9 @@ regadera_imagen = pygame.transform.scale(regadera_imagen, (60, 60))
 
 abono_imagen = pygame.image.load("abono_cursor.png")
 abono_imagen = pygame.transform.scale(abono_imagen, (60, 60))
+
+fondo_juego = pygame.image.load("fondo_juego.jpg")
+fondo_juego = pygame.transform.scale(fondo_juego, (600, 400))
 
 # Imágenes para eventos especiales
 try:
@@ -281,12 +288,12 @@ def finalizar_arrastre(pos):
                 # La efectividad disminuye con la fase
                 aumento = 1.0 / (1 + plantita["fase"] * 0.25)
                 plantita["agua"] = min(20, plantita["agua"] + aumento)
-                # Efecto de sonido o visual aquí (futuro)
+                sonido_agua.play()
             elif objeto_arrastrado == "abono" and plantita["abono"] < 20:
                 # La efectividad disminuye con la fase
                 aumento = 1.0 / (1 + plantita["fase"] * 0.25)
                 plantita["abono"] = min(20, plantita["abono"] + aumento)
-                # Efecto de sonido o visual aquí (futuro)
+                sonido_abono.play()
         
         # Restaurar el cursor
         pygame.mouse.set_visible(True)
@@ -357,7 +364,7 @@ def dibujar_tormenta():
         inicio_x = random.randint(100, ANCHO - 100)
         pygame.draw.line(pantalla, AMARILLO, (inicio_x, 0), (inicio_x + random.randint(-50, 50), 100), 4)
 
-# Pantalla de "Perdido"
+# Pantalla de "GAME OVER"
 def mostrar_pantalla_perdido():
     pantalla.fill(ROJO)
     texto = fuente.render("¡Perdiste! La plantita murió.", True, BLANCO)
@@ -474,7 +481,7 @@ def mostrar_evento():
         texto_evento = fuente.render("¡LLUVIA!", True, AZUL)
         pantalla.blit(texto_evento, (250, 100))
     elif evento_actual == "tormenta":
-        pantalla.blit(lluvia_imagen, (0, 0))  # Usando la misma imagen base de lluvia
+        pantalla.blit(tormenta_imagen, (0, 0))
         dibujar_tormenta()
         texto_evento = fuente.render("¡TORMENTA!", True, NARANJA)
         pantalla.blit(texto_evento, (230, 100))
