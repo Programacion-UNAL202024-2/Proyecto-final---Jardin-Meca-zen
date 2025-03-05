@@ -14,10 +14,11 @@ pygame.display.set_caption("Tamagotchi_Zen")
 pygame.mixer.music.load("musica_fondo.mp3")
 pygame.mixer.music.play(-1)  # Reproducir en bucle
 
+# Cargar efectos de sonido
 sonido_agua = pygame.mixer.Sound("agua.mp3")
 sonido_abono = pygame.mixer.Sound("abono.mp3")
 
-# Cargar imágenes
+# Cargar imágenes (alto, ancho)
 plantita_imagen = pygame.image.load("plantita.png")
 plantita_imagen = pygame.transform.scale(plantita_imagen, (100, 100))
 
@@ -58,7 +59,7 @@ except pygame.error:
     lluvia_imagen.fill((176, 196, 222))  # Color azul claro
 
     tormenta_imagen = pygame.Surface((600, 400))
-    tormenta_imagen.fill((176, 196, 222)) # Color azul claro
+    tormenta_imagen.fill((176, 196, 222)) # Color azul
 
 # Colores
 BLANCO = (255, 255, 255)
@@ -77,7 +78,7 @@ fuente_pequena = pygame.font.Font(None, 24)
 
 # Estados del juego
 plantita = {"fase": 0, "agua": 5, "abono": 5, "viva": True}
-tiempo_restante = 80  # Tiempo inicial más largo
+tiempo_restante = 80
 tiempo_total = 80
 
 # Eventos
