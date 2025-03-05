@@ -9,24 +9,28 @@
 ## 📝 Resumen del Juego
 En **TamagotchiZen**, tu misión es mantener viva y saludable a una planta que evoluciona por etapas (semilla 🌰, brote 🌿, planta adulta 🌳). Deberás:
 - **Regar** y **abonar** la planta.
-- **Reaccionar a eventos climáticos aleatorios** (sol intenso ☀️ y lluvia 🌧️).
+- **Reaccionar a eventos climáticos aleatorios** (sol intenso ☀️, lluvia 🌧️ y tormenta ⚡).
 - **Evitar que muera** por falta de recursos o salud.
 
 ## 🎯 Objetivo
 Llevar a tu planta a su etapa adulta superando los desafíos del clima y la gestión de recursos. ¡Cuanto más avances, más difícil será!
 
 ## ⚙️ Características Principales
-- **Sistema de necesidades básicas**: Agua 💧, abono 🏜️, salud ❤️.
+- **Sistema de necesidades básicas**: Agua 💧 y abono 🏜️.
 - **Eventos climáticos aleatorios** que afectan el progreso.
-- **Música de fondo relajante** y efectos de sonido.
-- **Menú principal** con opciones de nueva partida y carga de progreso.
+- **Música de fondo** y efectos de sonido.
 
 ## ⚙️ Lenguaje y Bibliotecas usadas
 - **Python**
 - **Pygame**
+- **Random**
+- **Time**
 
 ## 🌷 Capturas
 <div align="center">
-  <img src="https://github.com/Programacion-UNAL202024-2/Proyecto-final--TamagotchiZen/blob/main/captura_juego.png" alt="xd" width="800px">
+  <img src="https://github.com/Programacion-UNAL202024-2/Proyecto-final--TamagotchiZen/blob/main/captura_juego_lluvia.jpeg" alt="xd" width="800px">
 </div>
 
+<div align="center">
+  <img src="https://github.com/Programacion-UNAL202024-2/Proyecto-final--TamagotchiZen/blob/main/captura_juego_desierto.jpeg" alt="xd" width="800px">
+</div>
