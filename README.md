@@ -28,9 +28,9 @@ Llevar a tu planta a su etapa adulta superando los desafíos del clima y la gest
 
 ## 🌷 Capturas
 <div align="center">
-  <img src="https://github.com/Programacion-UNAL202024-2/Proyecto-final--TamagotchiZen/blob/main/captura_juego_lluvia.jpeg" alt="xd" width="800px">
+  <img src="https://github.com/Programacion-UNAL202024-2/Proyecto-final--TamagotchiZen/blob/main/assets/captura_juego_lluvia.jpeg" alt="xd" width="800px">
 </div>
 
 <div align="center">
-  <img src="https://github.com/Programacion-UNAL202024-2/Proyecto-final--TamagotchiZen/blob/main/captura_juego_desierto.jpeg" alt="xd" width="800px">
+  <img src="https://github.com/Programacion-UNAL202024-2/Proyecto-final--TamagotchiZen/blob/main/assets/captura_juego_desierto.jpeg" alt="xd" width="800px">
 </div>
