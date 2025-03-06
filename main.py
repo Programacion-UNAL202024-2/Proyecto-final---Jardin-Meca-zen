@@ -373,11 +373,33 @@ def dibujar_tormenta():
         inicio_x = random.randint(100, ANCHO - 100)
         pygame.draw.line(pantalla, AMARILLO, (inicio_x, 0), (inicio_x + random.randint(-50, 50), 100), 4)
 
+def dibujar_texto_con_contorno(surface, texto, fuente, x, y, color_texto, color_contorno, grosor_contorno=1):
+    
+    #Dibuja texto con un contorno.
+    #:param surface: Superficie donde se dibujará el texto.
+    #:param texto: Texto a dibujar.
+    #:param fuente: Fuente del texto.
+    #:param x: Posición X del texto.
+    #:param y: Posición Y del texto.
+    #:param color_texto: Color del texto principal.
+    #:param color_contorno: Color del contorno.
+    #:param grosor_contorno: Grosor del contorno (opcional, por defecto es 1).
+    
+    # Dibujar el contorno
+    for i in range(-grosor_contorno, grosor_contorno + 1):
+        for j in range(-grosor_contorno, grosor_contorno + 1):
+            if i != 0 or j != 0:  # Evitar dibujar en la posición central
+                texto_contorno = fuente.render(texto, True, color_contorno)
+                surface.blit(texto_contorno, (x + i, y + j))
+    
+    # Dibujar el texto principal
+    texto_principal = fuente.render(texto, True, color_texto)
+    surface.blit(texto_principal, (x, y))
+
 # Pantalla de "GAME OVER"
 def mostrar_pantalla_perdido():
-    pantalla.blit(fondo_perder, (0, 0))
-    texto = fuente.render("¡Perdiste! La plantita murió.", True, BLANCO)
-    pantalla.blit(texto, (150, 150))
+    pantalla.blit(fondo_perder, (0, 0))  # Dibujar el fondo de perder
+    dibujar_texto_con_contorno(pantalla, "¡Perdiste! La plantita murió.", fuente, 150, 150, BLANCO, NEGRO, 2)
     
     # Mostrar razón y fase alcanzada
     razon = ""
@@ -386,21 +408,18 @@ def mostrar_pantalla_perdido():
     elif plantita["abono"] <= 0:
         razon = "Le faltaron nutrientes."
     
-    texto_razon = fuente_pequena.render(razon, True, BLANCO)
-    pantalla.blit(texto_razon, (200, 190))
+    dibujar_texto_con_contorno(pantalla, razon, fuente_pequena, 200, 190, BLANCO, NEGRO, 1)
     
-    texto_fase = fuente_pequena.render(f"Llegaste hasta la fase {plantita['fase']}", True, BLANCO)
-    pantalla.blit(texto_fase, (200, 220))
+    texto_fase = f"Llegaste hasta la fase {plantita['fase']}"
+    dibujar_texto_con_contorno(pantalla, texto_fase, fuente_pequena, 200, 220, BLANCO, NEGRO, 1)
     
     pygame.draw.rect(pantalla, BLANCO, boton_play_rect)
-    texto_play = fuente.render("Reintentar", True, NEGRO)
-    pantalla.blit(texto_play, (250, 280))
+    dibujar_texto_con_contorno(pantalla, "Reintentar", fuente, 250, 280, NEGRO, BLANCO, 1)
 
 # Pantalla de "Inicio"
 def mostrar_pantalla_inicio():
-    pantalla.blit(fondo_menu, (0, 0))
-    texto_titulo = fuente.render("Tamagotchi - Cuida tu plantita", True, NEGRO)
-    pantalla.blit(texto_titulo, (120, 100))
+    pantalla.blit(fondo_menu, (0, 0))  # Dibujar el fondo del menú principal
+    dibujar_texto_con_contorno(pantalla, "Tamagotchi - Cuida tu plantita", fuente, 120, 100, BLANCO, NEGRO, 2)
     
     # Instrucciones
     instrucciones = [
@@ -413,29 +432,25 @@ def mostrar_pantalla_inicio():
     
     y_pos = 140
     for instruccion in instrucciones:
-        texto_inst = fuente_pequena.render(instruccion, True, NEGRO)
-        pantalla.blit(texto_inst, (100, y_pos))
+        dibujar_texto_con_contorno(pantalla, instruccion, fuente_pequena, 100, y_pos, BLANCO, NEGRO, 1)
         y_pos += 25
     
     pygame.draw.rect(pantalla, VERDE, boton_play_rect)
-    texto_play = fuente.render("Jugar", True, NEGRO)
-    pantalla.blit(texto_play, (270, 280))
+    dibujar_texto_con_contorno(pantalla, "Jugar", fuente, 270, 280, NEGRO, BLANCO, 1)
 
 # Pantalla de "Ganaste"
 def mostrar_pantalla_ganar():
-    pantalla.blit(fondo_ganar, (0, 0))
-    texto = fuente.render("¡Felicidades! Has cultivado la planta perfecta.", True, NEGRO)
-    pantalla.blit(texto, (30, 120))
+    pantalla.blit(fondo_ganar, (0, 0))  # Dibujar el fondo de ganar
+    dibujar_texto_con_contorno(pantalla, "¡Felicidades! Has cultivado la planta perfecta.", fuente, 30, 120, BLANCO, NEGRO, 2)
     
-    texto_tiempo = fuente_pequena.render(f"Tiempo restante: {int(tiempo_restante)} segundos", True, NEGRO)
-    pantalla.blit(texto_tiempo, (200, 170))
+    texto_tiempo = f"Tiempo restante: {int(tiempo_restante)} segundos"
+    dibujar_texto_con_contorno(pantalla, texto_tiempo, fuente_pequena, 200, 170, BLANCO, NEGRO, 1)
     
-    texto_dificultad = fuente_pequena.render(f"Nivel de dificultad alcanzado: {nivel_dificultad}", True, NEGRO)
-    pantalla.blit(texto_dificultad, (170, 200))
+    texto_dificultad = f"Nivel de dificultad alcanzado: {nivel_dificultad}"
+    dibujar_texto_con_contorno(pantalla, texto_dificultad, fuente_pequena, 170, 200, BLANCO, NEGRO, 1)
     
     pygame.draw.rect(pantalla, BLANCO, boton_play_rect)
-    texto_play = fuente.render("Reiniciar", True, NEGRO)
-    pantalla.blit(texto_play, (250, 280))
+    dibujar_texto_con_contorno(pantalla, "Reiniciar", fuente, 250, 280, NEGRO, BLANCO, 1)
 
 # Función para dibujar barras de estado
 def dibujar_barras_estado():
