@@ -54,6 +54,11 @@
   ```bash
   pip install pygame
 
+## Diagrama de Flujo
+<div align ="center>
+  <img src="https://github.com/Programacion-UNAL202024-2/Proyecto-final--TamagotchiZen/blob/main/assets/diagrama.png" alt="Aquí hay un diagrama de flujo" width="1000px">
+</div>
+
 ## 🌷 Capturas
 <div align="center">
   <img src="https://github.com/Programacion-UNAL202024-2/Proyecto-final--TamagotchiZen/blob/main/assets/captura_juego_lluvia.jpeg" alt="xd" width="800px">
