@@ -61,7 +61,7 @@
 
 ## 🌷 Capturas
 <div align="center">
-  <img src="https://github.com/Programacion-UNAL202024-2/Proyecto-final--TamagotchiZen/blob/main/assets/captura_juego_lluvia.jpeg" alt="xd" width="800px">
+  <img src="ttps://github.com/Programacion-UNAL202024-2/Proyecto-final--TamagotchiZen/blob/283013a10776bbaa14f643318885fbd192e7a330/assets/diagrama.png" alt="xd" width="800px">
 </div>
 
 <div align="center">
