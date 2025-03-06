@@ -61,9 +61,23 @@
 
 ## 🌷 Capturas
 <div align="center">
+  <img src="https://github.com/Programacion-UNAL202024-2/Proyecto-final--TamagotchiZen/blob/main/assets/captura_inicio.png" alt="xd" width="800px">
+</div>
+<div align="center">
+  <img src="https://github.com/Programacion-UNAL202024-2/Proyecto-final--TamagotchiZen/blob/main/assets/captura_game.png" alt="xd" width="800px">
+</div>
+
+<div align="center">
   <img src="https://github.com/Programacion-UNAL202024-2/Proyecto-final--TamagotchiZen/blob/main/assets/captura_juego_lluvia.jpeg" alt="xd" width="800px">
 </div>
 
 <div align="center">
   <img src="https://github.com/Programacion-UNAL202024-2/Proyecto-final--TamagotchiZen/blob/main/assets/captura_juego_desierto.jpeg" alt="xd" width="800px">
+</div>
+<div align="center">
+  <img src="https://github.com/Programacion-UNAL202024-2/Proyecto-final--TamagotchiZen/blob/main/assets/captura_tormenta.png" alt="xd" width="800px">
+</div>
+
+<div align="center">
+  <img src="https://github.com/Programacion-UNAL202024-2/Proyecto-final--TamagotchiZen/blob/main/assets/captura_perder.png" alt="xd" width="800px">
 </div>
