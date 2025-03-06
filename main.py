@@ -425,8 +425,8 @@ def mostrar_pantalla_inicio():
     instrucciones = [
         "Ayuda a crecer tu planta dándole agua y abono.",
         "Arrastra los iconos y suéltalos sobre la planta.",
-        "Pasa por 4 fases de crecimiento para ganar.",
-        "Cada fase es más difícil que la anterior.",
+        "Sobrevive y cuida a la planta el tiempo restante para ganar.",
+        "Cada fase de crecimiento es más difícil que la anterior.",
         "Sobrevive a eventos especiales como sequías o tormentas."
     ]
     
