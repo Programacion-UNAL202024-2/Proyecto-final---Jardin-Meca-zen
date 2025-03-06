@@ -28,7 +28,7 @@ plantita_fase1 = pygame.transform.scale(plantita_fase1, (90, 90))
 plantita_fase2 = pygame.image.load("assets/plantita_fase2.png")
 plantita_fase2 = pygame.transform.scale(plantita_fase2, (78, 135))
 
-plantita_fase3 = pygame.image.load("assets/plantita_fase3.png")  
+plantita_fase3 = pygame.image.load("assets/plantita_fase3.png")
 plantita_fase3 = pygame.transform.scale(plantita_fase3, (80, 130))
 
 regadera_imagen = pygame.image.load("assets/agua_cursor.png")
@@ -68,7 +68,7 @@ except pygame.error:
     lluvia_imagen.fill((176, 196, 222))  # Color azul claro
 
     tormenta_imagen = pygame.Surface((600, 400))
-    tormenta_imagen.fill((176, 196, 222)) # Color azul
+    tormenta_imagen.fill((176, 196, 222))  # Color azul
 
 # Colores
 BLANCO = (255, 255, 255)
@@ -130,8 +130,9 @@ intervalo_eventos = 15  # Cada 15 segundos puede ocurrir un evento
 duracion_evento = 10  # Duración de cada evento en segundos
 intervalo_aumento_dificultad = 20  # Aumenta la dificultad cada 20 segundos
 
-# Función para reiniciar el juego
+
 def reiniciar_juego():
+    """Función para reiniciar el juego."""
     global plantita, tiempo_restante, evento_actual, nivel_dificultad, tiempo_inicio_juego
     global tiempo_ultimo_evento, tiempo_ultimo_decremento, tiempo_ultimo_aumento_dificultad
     
@@ -147,8 +148,9 @@ def reiniciar_juego():
     tiempo_ultimo_decremento = tiempo_actual
     tiempo_ultimo_aumento_dificultad = tiempo_actual
 
-# Función para generar eventos aleatorios
+
 def generar_evento():
+    """Función para generar eventos aleatorios."""
     global evento_actual, tiempo_inicio_evento
     
     # Solo genera un evento si no hay uno activo
@@ -156,7 +158,7 @@ def generar_evento():
         # Mayor probabilidad de evento con nivel de dificultad más alto
         probabilidad = 0.2 * nivel_dificultad
         if random.random() < probabilidad:
-            # Más eventos dificiles en fases avanzadas
+            # Más eventos difíciles en fases avanzadas
             if plantita["fase"] < 2:
                 eventos_posibles = ["desierto", "lluvioso"]
             else:
@@ -167,13 +169,15 @@ def generar_evento():
             return True
     return False
 
-# Función para finalizar evento
+
 def finalizar_evento():
+    """Función para finalizar evento."""
     global evento_actual
     evento_actual = None
 
-# Función para aplicar efectos de eventos
+
 def aplicar_evento_efectos():
+    """Función para aplicar efectos de eventos."""
     global plantita, aviso, tiempo_aviso, tiempo_ultimo_decremento
     
     tiempo_actual = time.time()
@@ -200,7 +204,7 @@ def aplicar_evento_efectos():
                 tiempo_aviso = tiempo_actual
             tiempo_ultimo_decremento = tiempo_actual
             
-    # Efectos de tormenta: disminuye tanto agua como abono (evento más dificil)
+    # Efectos de tormenta: disminuye tanto agua como abono (evento más difícil)
     elif evento_actual == "tormenta":
         if tiempo_actual - tiempo_ultimo_decremento > 1.2 / factor_dificultad:
             plantita["agua"] = max(0, plantita["agua"] - 0.07)
@@ -210,13 +214,15 @@ def aplicar_evento_efectos():
                 tiempo_aviso = tiempo_actual
             tiempo_ultimo_decremento = tiempo_actual
 
-# Función para verificar si la planta sigue viva
+
 def verificar_planta_viva():
+    """Función para verificar si la planta sigue viva."""
     if plantita["agua"] <= 0 or plantita["abono"] <= 0:
         plantita["viva"] = False
 
-# Función para decrementar recursos con el tiempo
+
 def decrementar_recursos():
+    """Función para decrementar recursos con el tiempo."""
     global plantita, tiempo_ultimo_decremento, aviso, tiempo_aviso
     
     tiempo_actual = time.time()
@@ -242,8 +248,9 @@ def decrementar_recursos():
             
         tiempo_ultimo_decremento = tiempo_actual
 
-# Función para aumentar la dificultad con el tiempo
+
 def aumentar_dificultad():
+    """Función para aumentar la dificultad con el tiempo."""
     global nivel_dificultad, tiempo_ultimo_aumento_dificultad
     
     tiempo_actual = time.time()
@@ -251,8 +258,9 @@ def aumentar_dificultad():
         nivel_dificultad = min(5, nivel_dificultad + 1)  # Máximo nivel 5
         tiempo_ultimo_aumento_dificultad = tiempo_actual
 
-# Función para dibujar la plantita
+
 def dibujar_plantita():
+    """Función para dibujar la plantita."""
     global plantita_rect
     
     # Actualizar el área de colisión según la fase
@@ -269,8 +277,9 @@ def dibujar_plantita():
         pantalla.blit(plantita_fase3, (260, 180))
         plantita_rect = pygame.Rect(265, 200, 100, 120)
 
-# Función para iniciar arrastre
+
 def iniciar_arrastre(pos):
+    """Función para iniciar arrastre."""
     global arrastrando, objeto_arrastrado, posicion_arrastre
     
     if boton_agua_rect.collidepoint(pos):
@@ -286,8 +295,9 @@ def iniciar_arrastre(pos):
         # Ocultar el cursor durante el arrastre
         pygame.mouse.set_visible(False)
 
-# Función para finalizar arrastre
+
 def finalizar_arrastre(pos):
+    """Función para finalizar arrastre."""
     global arrastrando, objeto_arrastrado, posicion_arrastre, plantita
     
     if arrastrando:
@@ -309,15 +319,17 @@ def finalizar_arrastre(pos):
         arrastrando = False
         objeto_arrastrado = None
 
-# Función para actualizar posición durante arrastre
+
 def actualizar_arrastre(pos):
+    """Función para actualizar posición durante arrastre."""
     global posicion_arrastre
     
     if arrastrando:
         posicion_arrastre = pos
 
-# Función para dibujar objeto arrastrado
+
 def dibujar_arrastre():
+    """Función para dibujar objeto arrastrado."""
     if arrastrando:
         if objeto_arrastrado == "agua":
             # Ajustar posición para centrar en el cursor
@@ -326,15 +338,22 @@ def dibujar_arrastre():
             # Ajustar posición para centrar en el cursor
             pantalla.blit(abono_imagen, (posicion_arrastre[0] - 25, posicion_arrastre[1] - 25))
 
-# Función para actualizar la fase de la plantita
+
 def actualizar_fase_plantita():
-    if plantita["agua"] >= requisitos_fase1["agua"] and plantita["abono"] >= requisitos_fase1["abono"] and plantita["fase"] == 0:
+    """Función para actualizar la fase de la plantita."""
+    if (plantita["agua"] >= requisitos_fase1["agua"] and 
+            plantita["abono"] >= requisitos_fase1["abono"] and 
+            plantita["fase"] == 0):
         plantita["fase"] = 1
         mostrar_mensaje_fase("¡Fase 1 completada! La planta está creciendo.", 3)
-    elif plantita["agua"] >= requisitos_fase2["agua"] and plantita["abono"] >= requisitos_fase2["abono"] and plantita["fase"] == 1:
+    elif (plantita["agua"] >= requisitos_fase2["agua"] and 
+            plantita["abono"] >= requisitos_fase2["abono"] and 
+            plantita["fase"] == 1):
         plantita["fase"] = 2
         mostrar_mensaje_fase("¡Fase 2 completada! La planta se fortalece.", 3)
-    elif plantita["agua"] >= requisitos_fase3["agua"] and plantita["abono"] >= requisitos_fase3["abono"] and plantita["fase"] == 2:
+    elif (plantita["agua"] >= requisitos_fase3["agua"] and 
+            plantita["abono"] >= requisitos_fase3["abono"] and 
+            plantita["fase"] == 2):
         plantita["fase"] = 3
         mostrar_mensaje_fase("¡Fase 3 completada! La planta está floreciendo.", 3)
     elif plantita["fase"] == 3 and plantita["agua"] >= 18 and plantita["abono"] >= 18:
@@ -342,49 +361,65 @@ def actualizar_fase_plantita():
         return True
     return False
 
-# Función para mostrar mensajes de fase
+
 def mostrar_mensaje_fase(mensaje, duracion):
+    """Función para mostrar mensajes de fase."""
     global aviso, tiempo_aviso
     
     aviso = mensaje
     tiempo_aviso = time.time()
 
-# Función para dibujar eventos meteorológicos
+
 def dibujar_lluvia():
+    """Función para dibujar efecto de lluvia."""
     for _ in range(50):
         x = random.randint(0, ANCHO)
         y = random.randint(0, ALTO)
         pygame.draw.line(pantalla, AZUL, (x, y), (x, y + 10), 2)
 
+
 def dibujar_desierto():
+    """Función para dibujar efecto de desierto."""
     for _ in range(20):
         x = random.randint(0, ANCHO)
         y = random.randint(0, ALTO)
         pygame.draw.circle(pantalla, (245, 222, 179), (x, y), 3)
 
+
 def dibujar_tormenta():
+    """Función para dibujar efecto de tormenta."""
     for _ in range(30):
         x = random.randint(0, ANCHO)
         y = random.randint(0, ALTO)
-        pygame.draw.line(pantalla, AZUL, (x, y), (x + random.randint(-10, 10), y + 15), 3)
+        pygame.draw.line(
+            pantalla, AZUL, (x, y), 
+            (x + random.randint(-10, 10), y + 15), 3
+        )
     
     # Rayos ocasionales
     if random.random() < 0.1:
         inicio_x = random.randint(100, ANCHO - 100)
-        pygame.draw.line(pantalla, AMARILLO, (inicio_x, 0), (inicio_x + random.randint(-50, 50), 100), 4)
+        pygame.draw.line(
+            pantalla, AMARILLO, (inicio_x, 0), 
+            (inicio_x + random.randint(-50, 50), 100), 4
+        )
 
-def dibujar_texto_con_contorno(surface, texto, fuente, x, y, color_texto, color_contorno, grosor_contorno=1):
+
+def dibujar_texto_con_contorno(surface, texto, fuente, x, y, color_texto, 
+                               color_contorno, grosor_contorno=1):
+    """
+    Dibuja texto con un contorno.
     
-    #Dibuja texto con un contorno.
-    #:param surface: Superficie donde se dibujará el texto.
-    #:param texto: Texto a dibujar.
-    #:param fuente: Fuente del texto.
-    #:param x: Posición X del texto.
-    #:param y: Posición Y del texto.
-    #:param color_texto: Color del texto principal.
-    #:param color_contorno: Color del contorno.
-    #:param grosor_contorno: Grosor del contorno (opcional, por defecto es 1).
-    
+    Args:
+        surface: Superficie donde se dibujará el texto.
+        texto: Texto a dibujar.
+        fuente: Fuente del texto.
+        x: Posición X del texto.
+        y: Posición Y del texto.
+        color_texto: Color del texto principal.
+        color_contorno: Color del contorno.
+        grosor_contorno: Grosor del contorno (opcional, por defecto es 1).
+    """
     # Dibujar el contorno
     for i in range(-grosor_contorno, grosor_contorno + 1):
         for j in range(-grosor_contorno, grosor_contorno + 1):
@@ -396,10 +431,14 @@ def dibujar_texto_con_contorno(surface, texto, fuente, x, y, color_texto, color_
     texto_principal = fuente.render(texto, True, color_texto)
     surface.blit(texto_principal, (x, y))
 
-# Pantalla de "GAME OVER"
+
 def mostrar_pantalla_perdido():
+    """Pantalla de 'GAME OVER'."""
     pantalla.blit(fondo_perder, (0, 0))  # Dibujar el fondo de perder
-    dibujar_texto_con_contorno(pantalla, "¡Perdiste! La plantita murió.", fuente, 150, 150, BLANCO, NEGRO, 2)
+    dibujar_texto_con_contorno(
+        pantalla, "¡Perdiste! La plantita murió.", 
+        fuente, 150, 150, BLANCO, NEGRO, 2
+    )
     
     # Mostrar razón y fase alcanzada
     razon = ""
@@ -408,67 +447,109 @@ def mostrar_pantalla_perdido():
     elif plantita["abono"] <= 0:
         razon = "Le faltaron nutrientes."
     
-    dibujar_texto_con_contorno(pantalla, razon, fuente_pequena, 200, 190, BLANCO, NEGRO, 1)
+    dibujar_texto_con_contorno(
+        pantalla, razon, 
+        fuente_pequena, 200, 190, BLANCO, NEGRO, 1
+    )
     
     texto_fase = f"Llegaste hasta la fase {plantita['fase']}"
-    dibujar_texto_con_contorno(pantalla, texto_fase, fuente_pequena, 200, 220, BLANCO, NEGRO, 1)
+    dibujar_texto_con_contorno(
+        pantalla, texto_fase, 
+        fuente_pequena, 200, 220, BLANCO, NEGRO, 1
+    )
     
     pygame.draw.rect(pantalla, BLANCO, boton_play_rect)
-    dibujar_texto_con_contorno(pantalla, "Reintentar", fuente, 250, 280, NEGRO, BLANCO, 1)
+    dibujar_texto_con_contorno(
+        pantalla, "Reintentar", 
+        fuente, 250, 280, NEGRO, BLANCO, 1
+    )
 
-# Pantalla de "Inicio"
+
 def mostrar_pantalla_inicio():
+    """Pantalla de 'Inicio'."""
     pantalla.blit(fondo_menu, (0, 0))  # Dibujar el fondo del menú principal
-    dibujar_texto_con_contorno(pantalla, "Tamagotchi - Cuida tu plantita", fuente, 120, 100, BLANCO, NEGRO, 2)
+    dibujar_texto_con_contorno(
+        pantalla, "Tamagotchi - Cuida tu plantita", 
+        fuente, 120, 100, BLANCO, NEGRO, 2
+    )
     
     # Instrucciones
     instrucciones = [
         "Ayuda a crecer tu planta dándole agua y abono.",
         "Arrastra los iconos y suéltalos sobre la planta.",
-        "Sobrevive y cuida a la planta el tiempo restante para ganar.",
-        "Cada fase de crecimiento es más difícil que la anterior.",
+        "Pasa por 4 fases de crecimiento para ganar.",
+        "Cada fase es más difícil que la anterior.",
         "Sobrevive a eventos especiales como sequías o tormentas."
     ]
     
     y_pos = 140
     for instruccion in instrucciones:
-        dibujar_texto_con_contorno(pantalla, instruccion, fuente_pequena, 100, y_pos, BLANCO, NEGRO, 1)
+        dibujar_texto_con_contorno(
+            pantalla, instruccion, 
+            fuente_pequena, 100, y_pos, BLANCO, NEGRO, 1
+        )
         y_pos += 25
     
     pygame.draw.rect(pantalla, VERDE, boton_play_rect)
-    dibujar_texto_con_contorno(pantalla, "Jugar", fuente, 270, 280, NEGRO, BLANCO, 1)
+    dibujar_texto_con_contorno(
+        pantalla, "Jugar", 
+        fuente, 270, 280, NEGRO, BLANCO, 1
+    )
 
-# Pantalla de "Ganaste"
+
 def mostrar_pantalla_ganar():
+    """Pantalla de 'Ganaste'."""
     pantalla.blit(fondo_ganar, (0, 0))  # Dibujar el fondo de ganar
-    dibujar_texto_con_contorno(pantalla, "¡Felicidades! Has cultivado la planta perfecta.", fuente, 30, 120, BLANCO, NEGRO, 2)
+    dibujar_texto_con_contorno(
+        pantalla, "¡Felicidades! Has cultivado la planta perfecta.", 
+        fuente, 30, 120, BLANCO, NEGRO, 2
+    )
     
     texto_tiempo = f"Tiempo restante: {int(tiempo_restante)} segundos"
-    dibujar_texto_con_contorno(pantalla, texto_tiempo, fuente_pequena, 200, 170, BLANCO, NEGRO, 1)
+    dibujar_texto_con_contorno(
+        pantalla, texto_tiempo, 
+        fuente_pequena, 200, 170, BLANCO, NEGRO, 1
+    )
     
     texto_dificultad = f"Nivel de dificultad alcanzado: {nivel_dificultad}"
-    dibujar_texto_con_contorno(pantalla, texto_dificultad, fuente_pequena, 170, 200, BLANCO, NEGRO, 1)
+    dibujar_texto_con_contorno(
+        pantalla, texto_dificultad, 
+        fuente_pequena, 170, 200, BLANCO, NEGRO, 1
+    )
     
     pygame.draw.rect(pantalla, BLANCO, boton_play_rect)
-    dibujar_texto_con_contorno(pantalla, "Reiniciar", fuente, 250, 280, NEGRO, BLANCO, 1)
+    dibujar_texto_con_contorno(
+        pantalla, "Reiniciar", 
+        fuente, 250, 280, NEGRO, BLANCO, 1
+    )
 
-# Función para dibujar barras de estado
+
 def dibujar_barras_estado():
+    """Función para dibujar barras de estado."""
     # Barra de agua
     pygame.draw.rect(pantalla, NEGRO, (50, 50, 120, 20), 1)
-    pygame.draw.rect(pantalla, AZUL, (51, 51, max(0, int(118 * plantita["agua"] / 20)), 18))
+    pygame.draw.rect(
+        pantalla, AZUL, 
+        (51, 51, max(0, int(118 * plantita["agua"] / 20)), 18)
+    )
     texto_agua = fuente_pequena.render(f"Agua: {plantita['agua']:.1f}/20", True, NEGRO)
     pantalla.blit(texto_agua, (65, 30))
     
     # Barra de abono
     pygame.draw.rect(pantalla, NEGRO, (430, 50, 120, 20), 1)
-    pygame.draw.rect(pantalla, VERDE, (431, 51, max(0, int(118 * plantita["abono"] / 20)), 18))
+    pygame.draw.rect(
+        pantalla, VERDE, 
+        (431, 51, max(0, int(118 * plantita["abono"] / 20)), 18)
+    )
     texto_abono = fuente_pequena.render(f"Abono: {plantita['abono']:.1f}/20", True, NEGRO)
     pantalla.blit(texto_abono, (445, 30))
     
     # Barra de tiempo
     pygame.draw.rect(pantalla, NEGRO, (200, 20, 200, 15), 1)
-    pygame.draw.rect(pantalla, AMARILLO, (201, 21, max(0, int(198 * tiempo_restante / tiempo_total)), 13))
+    pygame.draw.rect(
+        pantalla, AMARILLO, 
+        (201, 21, max(0, int(198 * tiempo_restante / tiempo_total)), 13)
+    )
     texto_tiempo = fuente_pequena.render(f"Tiempo: {int(tiempo_restante)}", True, NEGRO)
     pantalla.blit(texto_tiempo, (250, 40))
     
@@ -481,19 +562,23 @@ def dibujar_barras_estado():
     
     # Requisitos para avanzar a la siguiente fase
     if plantita["fase"] == 0:
-        req_texto = f"Requisitos para fase 1: Agua {requisitos_fase1['agua']}, Abono {requisitos_fase1['abono']}"
+        req_texto = (f"Requisitos para fase 1: Agua {requisitos_fase1['agua']}, "
+                     f"Abono {requisitos_fase1['abono']}")
     elif plantita["fase"] == 1:
-        req_texto = f"Requisitos para fase 2: Agua {requisitos_fase2['agua']}, Abono {requisitos_fase2['abono']}"
+        req_texto = (f"Requisitos para fase 2: Agua {requisitos_fase2['agua']}, "
+                     f"Abono {requisitos_fase2['abono']}")
     elif plantita["fase"] == 2:
-        req_texto = f"Requisitos para fase 3: Agua {requisitos_fase3['agua']}, Abono {requisitos_fase3['abono']}"
+        req_texto = (f"Requisitos para fase 3: Agua {requisitos_fase3['agua']}, "
+                     f"Abono {requisitos_fase3['abono']}")
     else:
         req_texto = "Requisitos para ganar: Agua 18, Abono 18"
     
     texto_req = fuente_pequena.render(req_texto, True, NEGRO)
     pantalla.blit(texto_req, (150, 80))
 
-# Función para mostrar eventos especiales
+
 def mostrar_evento():
+    """Función para mostrar eventos especiales."""
     if evento_actual == "desierto":
         pantalla.blit(desierto_imagen, (0, 0))
         dibujar_desierto()
@@ -510,13 +595,15 @@ def mostrar_evento():
         texto_evento = fuente.render("¡TORMENTA!", True, NARANJA)
         pantalla.blit(texto_evento, (230, 100))
 
-# Función para mostrar avisos
+
 def mostrar_aviso():
+    """Función para mostrar avisos."""
     tiempo_actual = time.time()
     if aviso and tiempo_actual - tiempo_aviso < duracion_aviso:
         texto_aviso = fuente.render(aviso, True, ROJO)
         ancho_texto = texto_aviso.get_width()
         pantalla.blit(texto_aviso, (ANCHO//2 - ancho_texto//2, 350))
+
 
 # Inicializar tiempos antes del bucle principal
 tiempo_inicio_juego = 0
@@ -552,13 +639,12 @@ while ejecutando:
 
     if pantalla_actual == "inicio":
         mostrar_pantalla_inicio()
-        
     elif pantalla_actual == "juego":
         # Actualizar tiempo
         tiempo_actual = time.time()
         if tiempo_inicio_juego > 0:
             tiempo_restante = max(0, 80 - (tiempo_actual - tiempo_inicio_juego))
-        
+    
         if plantita["viva"] and tiempo_restante > 0:
             # Fondo base
             pantalla.fill(BLANCO)
@@ -567,48 +653,48 @@ while ejecutando:
             if evento_actual:
                 aplicar_evento_efectos()
                 mostrar_evento()
-                
-                # Finalizar evento si ha pasado el tiempo
+            
+            # Finalizar evento si ha pasado el tiempo
                 if tiempo_actual - tiempo_inicio_evento > duracion_evento:
                     finalizar_evento()
             else:
-                # Verificar si se genera un nuevo evento
+            # Verificar si se genera un nuevo evento
                 if tiempo_actual - tiempo_ultimo_evento > intervalo_eventos:
                     if generar_evento():
                         tiempo_ultimo_evento = tiempo_actual
-            
+        
             # Decrementar recursos normalmente si no hay evento
             if not evento_actual:
                 decrementar_recursos()
-            
+        
             # Aumentar dificultad
             aumentar_dificultad()
-            
+        
             # Verificar si la planta sigue viva
             verificar_planta_viva()
-            
+        
             # Dibujar elementos
             dibujar_plantita()
             dibujar_barras_estado()
             mostrar_aviso()
-            
+        
             # Dibujar botones
             pantalla.blit(regadera_imagen, boton_agua_rect.topleft)
             pantalla.blit(abono_imagen, boton_abono_rect.topleft)
-            
+        
             # Dibujar indicadores de selección cuando no está arrastrando
             if not arrastrando:
                 # Destacar los botones para indicar que se pueden arrastrar
                 pygame.draw.rect(pantalla, AZUL, boton_agua_rect, 2)
                 pygame.draw.rect(pantalla, VERDE, boton_abono_rect, 2)
-                
+            
                 # Añadir texto de instrucción
                 texto_instruccion = fuente_pequena.render("Arrastra hacia la planta", True, NEGRO)
-                pantalla.blit(texto_instruccion, (ANCHO//2 - texto_instruccion.get_width()//2, 330))
-            
+                pantalla.blit(texto_instruccion, (ANCHO // 2 - texto_instruccion.get_width() // 2, 330))
+        
             # Dibujar objeto arrastrado (por encima de todo)
             dibujar_arrastre()
-            
+        
             # Actualizar fase de la plantita y verificar victoria
             if actualizar_fase_plantita():
                 pantalla_actual = "ganar"
@@ -616,10 +702,10 @@ while ejecutando:
             pantalla_actual = "perdido"
         elif tiempo_restante <= 0:
             pantalla_actual = "ganar"
-            
+        
     elif pantalla_actual == "perdido":
         mostrar_pantalla_perdido()
-        
+    
     elif pantalla_actual == "ganar":
         mostrar_pantalla_ganar()
 
