@@ -97,8 +97,8 @@ eventos = ["desierto", "lluvioso", "tormenta", None]
 
 # Requisitos para crecer (aumentados para hacer el juego más largo)
 requisitos_fase1 = {"agua": 8, "abono": 8}
-requisitos_fase2 = {"agua": 10, "abono": 10}
-requisitos_fase3 = {"agua": 16, "abono": 16}
+requisitos_fase2 = {"agua": 9, "abono": 9}
+requisitos_fase3 = {"agua": 10, "abono": 10}
 
 # Avisos
 aviso = None
