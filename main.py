@@ -40,6 +40,15 @@ abono_imagen = pygame.transform.scale(abono_imagen, (60, 60))
 fondo_principal = pygame.image.load("assets/fondo_principal.jpg")
 fondo_principal = pygame.transform.scale(fondo_principal, (600, 400))
 
+fondo_ganar = pygame.image.load("assets/fondo_ganar.jpeg")
+fondo_ganar = pygame.transform.scale(fondo_ganar, (600, 400))
+
+fondo_perder = pygame.image.load("assets/fondo_perder.jpeg")
+fondo_perder = pygame.transform.scale(fondo_perder, (600, 400))
+
+fondo_menu = pygame.image.load("assets/fondo_menu.jpeg")
+fondo_menu = pygame.transform.scale(fondo_menu, (600, 400))
+
 # Imágenes para eventos especiales
 try:
     desierto_imagen = pygame.image.load("assets/desierto.jpg")
@@ -366,7 +375,7 @@ def dibujar_tormenta():
 
 # Pantalla de "GAME OVER"
 def mostrar_pantalla_perdido():
-    pantalla.fill(ROJO)
+    pantalla.blit(fondo_perder, (0, 0))
     texto = fuente.render("¡Perdiste! La plantita murió.", True, BLANCO)
     pantalla.blit(texto, (150, 150))
     
@@ -389,7 +398,7 @@ def mostrar_pantalla_perdido():
 
 # Pantalla de "Inicio"
 def mostrar_pantalla_inicio():
-    pantalla.fill(GRIS)
+    pantalla.blit(fondo_menu, (0, 0))
     texto_titulo = fuente.render("Tamagotchi - Cuida tu plantita", True, NEGRO)
     pantalla.blit(texto_titulo, (120, 100))
     
@@ -414,14 +423,14 @@ def mostrar_pantalla_inicio():
 
 # Pantalla de "Ganaste"
 def mostrar_pantalla_ganar():
-    pantalla.fill(VERDE_OSCURO)
-    texto = fuente.render("¡Felicidades! Has cultivado la planta perfecta.", True, BLANCO)
+    pantalla.blit(fondo_ganar, (0, 0))
+    texto = fuente.render("¡Felicidades! Has cultivado la planta perfecta.", True, NEGRO)
     pantalla.blit(texto, (30, 120))
     
-    texto_tiempo = fuente_pequena.render(f"Tiempo restante: {int(tiempo_restante)} segundos", True, BLANCO)
+    texto_tiempo = fuente_pequena.render(f"Tiempo restante: {int(tiempo_restante)} segundos", True, NEGRO)
     pantalla.blit(texto_tiempo, (200, 170))
     
-    texto_dificultad = fuente_pequena.render(f"Nivel de dificultad alcanzado: {nivel_dificultad}", True, BLANCO)
+    texto_dificultad = fuente_pequena.render(f"Nivel de dificultad alcanzado: {nivel_dificultad}", True, NEGRO)
     pantalla.blit(texto_dificultad, (170, 200))
     
     pygame.draw.rect(pantalla, BLANCO, boton_play_rect)
@@ -538,7 +547,7 @@ while ejecutando:
         if plantita["viva"] and tiempo_restante > 0:
             # Fondo base
             pantalla.fill(BLANCO)
-            
+            pantalla.blit(fondo_principal, (0, 0))
             # Aplicar efectos de eventos
             if evento_actual:
                 aplicar_evento_efectos()
